@@ -1,0 +1,31 @@
+.sidebar {
+    align-items: center;
+    background-color: var(--sidebarColor);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    justify-content: space-between;
+    left: 20px;
+    padding: 30px 10px;
+    position: fixed;
+    top: 10%;
+    width: 70px;
+    z-index: 1;
+}
+
+.navLinksContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: space-between;
+}
+
+.navLink {
+    opacity: 1;
+}
+
+.active {
+    opacity: 0.5;
+}

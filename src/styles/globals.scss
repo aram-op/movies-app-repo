@@ -1,23 +1,10 @@
-:root {
-  --bg: #10141e;
-  --sidebarColor: #161e30;
-}
+@use "variables";
 
-@media (prefers-color-scheme: dark) {
-  :root {
-
-  }
-}
-
-html,
-body {
+html, body {
   max-width: 100vw;
   overflow-x: hidden;
   height: 100%;
-}
-
-body {
-
+  background-color: variables.$bg;
 }
 
 * {
@@ -35,4 +22,9 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+main {
+  width: calc(100% - 110px);
+  height: 100%;
 }

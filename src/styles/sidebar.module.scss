@@ -1,6 +1,8 @@
+@use "variables";
+
 .sidebar {
     align-items: center;
-    background-color: var(--sidebarColor);
+    background-color: variables.$secondaryColor;
     border-radius: 15px;
     display: flex;
     flex-direction: column;

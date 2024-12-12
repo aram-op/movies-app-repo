@@ -1,7 +1,8 @@
 import type {Metadata} from 'next';
-import './globals.css';
+import '../styles/globals.scss';
 import React from 'react';
-import Sidebar from '@/app/ui/sidebar/sidebar';
+import Sidebar from '@/app/ui/sidebar';
+import Header from '@/app/ui/header';
 
 
 export const metadata: Metadata = {
@@ -14,7 +15,10 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
         <html lang="en">
             <body>
                 <Sidebar/>
-                {children}
+                <Header/>
+                <main>
+                    {children}
+                </main>
             </body>
         </html>
     );

@@ -1,0 +1,63 @@
+@use "variables";
+
+.container {
+  width: fit-content;
+  margin-left: 15px;
+  padding-top: 10px;
+
+  @keyframes hoverAnim {
+    from {
+      transform: none;
+    }
+    to {
+      transform: skew(3deg, 3deg);
+    }
+  }
+
+  .backdrop {
+    border-radius: 8px;
+    height: fit-content;
+  }
+
+  .backdrop:hover {
+    animation-name: hoverAnim;
+    animation-duration: 0.2s;
+    animation-iteration-count: 2;
+    animation-direction: alternate;
+  }
+
+  .info {
+    display: flex;
+    color: variables.$textColor;
+    opacity: 0.6;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .title {
+    font-size: 14px;
+    font-weight: 400;
+    color: variables.$textColor;
+  }
+}
+
+.s {
+  .backdrop {
+    width: 112px;
+    height: 63px;
+  }
+}
+
+.m {
+  .backdrop {
+    width: 160px;
+    height: 90px;
+  }
+}
+
+.l {
+  .backdrop {
+    width: 208px;
+    height: 117px;
+  }
+}

@@ -1,0 +1,40 @@
+@use "variables";
+
+.container {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  justify-content: space-between;
+  padding-left: 20px;
+
+  .titleContainer {
+    display: flex;
+    align-items: end;
+    width: fit-content;
+
+    .title {
+      font-size: 28px;
+      font-weight: 300;
+      color: variables.$textColor;
+      margin-right: 20px;
+    }
+  }
+
+  .expand {
+    border: none;
+    background: transparent;
+    color: variables.$primaryColor;
+    transition: 0.2s;
+    cursor: pointer;
+    font-size: 10px;
+  }
+
+  .expand:hover {
+    opacity: 0.8;
+    transition: 0.2s;
+  }
+
+  .expand:active {
+    opacity: 0.5;
+  }
+}

@@ -1,23 +1,22 @@
 @use 'variables';
 
 .searchbar {
-  height: 100%;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 
   .searchField {
-    width: calc(100% - 150px);
-    height: 50px;
+    width: calc(100% - 50px);
+    height: 35px;
     border: none;
     padding: 5px 25px;
-    border-radius: 15px;
+    border-radius: 12px;
     caret-color: variables.$textColor;
     color: variables.$textColor;
     background-color: variables.$secondaryColor;
     outline: none;
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .searchField::placeholder {
@@ -25,9 +24,9 @@
   }
 
   .searchBtn {
-    height: 35px;
-    width: 70px;
-    font-size: 14px;
+    height: 30px;
+    width: 45px;
+    font-size: 12px;
     color: white;
     background-color: variables.$primaryColor;
     border: none;

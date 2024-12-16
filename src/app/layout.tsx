@@ -3,6 +3,7 @@ import '../styles/globals.scss';
 import React from 'react';
 import Sidebar from '@/app/ui/sidebar';
 import Header from '@/app/ui/header';
+import {outfit} from '@/app/fonts';
 
 
 export const metadata: Metadata = {
@@ -13,13 +14,13 @@ export const metadata: Metadata = {
 export default function RootLayout({children,}: Readonly<{ children: React.ReactNode; }>) {
     return (
         <html lang="en">
-            <body>
-                <Sidebar/>
-                <Header/>
-                <main>
-                    {children}
-                </main>
-            </body>
+        <body className={outfit.className}>
+        <Sidebar/>
+        <Header/>
+        <main>
+            {children}
+        </main>
+        </body>
         </html>
     );
 }

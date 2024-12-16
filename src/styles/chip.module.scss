@@ -1,0 +1,19 @@
+@use "variables";
+
+.chip {
+  border: 1px solid variables.$textColor;
+  border-radius: 6px;
+  padding: 1px 8px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.outlined {
+  color: variables.$textColor;
+  background: transparent;
+}
+
+.filled {
+  background: variables.$textColor;
+  color: invert(variables.$textColor);
+}

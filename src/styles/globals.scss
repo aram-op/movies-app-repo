@@ -29,9 +29,36 @@ a {
 main {
   height: calc(100% - 80px);
   padding: 10px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 main::-webkit-scrollbar {
-  display: none;
+  width: 0;
+}
+
+@media (min-width: 700px) {
+  main {
+    margin-left: 100px;
+  }
+
+  main::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 15px;
+    background: rgba(136, 136, 136, 0.15);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(85, 85, 85, 0.18);
+  }
+
+  ::-webkit-scrollbar-corner {
+    display: none;
+  }
 }

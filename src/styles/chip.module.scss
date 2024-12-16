@@ -17,3 +17,10 @@
   background: variables.$textColor;
   color: invert(variables.$textColor);
 }
+
+@media (min-width: 700px) {
+  .chip {
+    padding: 1px 8px;
+    font-size: 15px;
+  }
+}

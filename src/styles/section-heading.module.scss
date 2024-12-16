@@ -38,3 +38,18 @@
     opacity: 0.5;
   }
 }
+
+@media(min-width: 700px) {
+  .container {
+    .expand {
+      font-size: 13px;
+    }
+
+    .titleContainer {
+      .title {
+        font-size: 40px;
+        font-weight: 300;
+      }
+    }
+  }
+}

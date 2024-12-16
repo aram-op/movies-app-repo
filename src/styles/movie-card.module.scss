@@ -61,3 +61,46 @@
     height: 117px;
   }
 }
+
+@media (min-width:700px) {
+  .container {
+    .info {
+      font-size: 16px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 400;
+    }
+  }
+
+  .s {
+    .backdrop {
+      width: 224px;
+      height: 126px;
+    }
+
+    .info {
+      font-size: 14px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 400;
+    }
+  }
+
+  .m {
+    .backdrop {
+      width: 320px;
+      height: 180px;
+    }
+  }
+
+  .l {
+    .backdrop {
+      width: 416px;
+      height: 234px;
+    }
+  }
+}

@@ -4,17 +4,30 @@ import styles from '../../styles/sidebar.module.scss';
 import Link from 'next/link';
 import classNames from 'classnames';
 import {usePathname} from 'next/navigation';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 function Sidebar() {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+    const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     return (
         <>
-            <button className={styles.toggleSidebar} onClick={() => setIsOpen(!isOpen)}>
+            {windowWidth < 700 && <button className={styles.toggleSidebar} onClick={() => setIsOpen(!isOpen)}>
                 <img src="burger-menu.svg" width="25" height="25"/>
-            </button>
+            </button>}
             <div className={classNames([styles.sidebar], isOpen && styles.opened)}>
                 <Link href={'/'} className={classNames({active: pathname === '/'})}>
                     <img src="movie-cut.svg" width="40" height="40"/>
@@ -38,7 +51,7 @@ function Sidebar() {
                 </Link>
             </div>
 
-            {isOpen && <div className={styles.overlay}></div>}
+            {(isOpen && windowWidth < 700) && <div className={styles.overlay}></div>}
         </>
     );
 }

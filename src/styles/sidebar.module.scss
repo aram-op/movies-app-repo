@@ -68,3 +68,12 @@
     background-color: rgba(53, 55, 70, 0.5);
     z-index: 900;
 }
+
+
+@media (min-width: 700px) {
+    .sidebar {
+        position: fixed;
+        left: 20px;
+        top: max(10%, 25px);
+    }
+}

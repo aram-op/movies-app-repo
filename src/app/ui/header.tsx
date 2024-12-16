@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/header.module.scss';
+import styles from '@/styles/ui/header.module.scss';
 import Searchbar from '@/app/ui/searchbar';
 import {useEffect, useState} from 'react';
 

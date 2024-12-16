@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/section-heading.module.scss';
+import styles from '@/styles/ui/section-heading.module.scss';
 import Chip from '@/app/ui/chip';
 
 function SectionHeading({title, onExpandClicked}: { title: string, onExpandClicked: () => void }) {

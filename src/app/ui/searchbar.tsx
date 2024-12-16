@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/searchbar.module.scss';
+import styles from '@/styles/ui/searchbar.module.scss';
 
 function Searchbar() {
     return(

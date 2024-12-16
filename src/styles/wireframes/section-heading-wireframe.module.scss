@@ -1,0 +1,57 @@
+@use "../variables";
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: variables.$skeletonsColor;
+  }
+  100% {
+    background-color: variables.$skeletonsColor2;
+  }
+}
+
+.container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-left: 20px;
+
+  .titleContainer {
+    display: flex;
+    align-items: flex-end;
+    width: fit-content;
+
+    .title {
+      width: 130px;
+      height: 20px;
+      background-color: variables.$skeletonsColor;
+      border-radius: 18px;
+      margin-right: 20px;
+      animation: skeleton-loading 1s linear infinite alternate;
+    }
+  }
+
+  .expand {
+    width: 55px;
+    height: 10px;
+    border-radius: 8px;
+    background-color: variables.$skeletonsColor;
+    animation: skeleton-loading 1s linear infinite alternate;
+    color: transparent;
+  }
+}
+
+@media(min-width: 700px) {
+  .container {
+    .titleContainer {
+      .title {
+        width: 155px;
+        height: 35px;
+      }
+    }
+
+    .expand {
+      width: 70px;
+      height: 15px;
+    }
+  }
+}

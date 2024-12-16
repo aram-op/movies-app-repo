@@ -1,0 +1,25 @@
+@use "../variables";
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: variables.$skeletonsColor;
+  }
+  100% {
+    background-color: variables.$skeletonsColor2;
+  }
+}
+
+.chip {
+  width: 55px;
+  height: 15px;
+  background-color: variables.$skeletonsColor;
+  border-radius: 6px;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@media (min-width: 700px) {
+  .chip {
+    width: 75px;
+    height: 20px;
+  }
+}

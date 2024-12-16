@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/chip.module.scss';
+import styles from '@/styles/ui/chip.module.scss';
 import classNames from 'classnames';
 
 function Chip({text, isFilled} : {text : string, isFilled : boolean}) {

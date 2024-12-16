@@ -1,43 +1,46 @@
-@use "variables";
+@use "../variables";
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: variables.$skeletonsColor;
+  }
+  100% {
+    background-color: variables.$skeletonsColor2;
+  }
+}
 
 .container {
   width: fit-content;
   margin-left: 15px;
   padding-top: 10px;
 
-  @keyframes hoverAnim {
-    from {
-      transform: none;
-    }
-    to {
-      transform: skew(3deg, 3deg);
-    }
-  }
-
   .backdrop {
     border-radius: 8px;
     height: fit-content;
+    background-color: variables.$skeletonsColor;
+    animation: skeleton-loading 1s linear infinite alternate;
   }
 
-  .backdrop:hover {
-    animation-name: hoverAnim;
-    animation-duration: 0.2s;
-    animation-iteration-count: 2;
-    animation-direction: alternate;
+  .infoContainer {
+    display: flex;
+    flex-direction: column;
   }
 
   .info {
-    display: flex;
-    color: variables.$textColor;
-    opacity: 0.6;
-    align-items: center;
-    font-size: 12px;
+    height: 5px;
+    width: 60px;
+    border-radius: 10px;
+    background-color: variables.$skeletonsColor;
+    margin-bottom: 5px;
+    animation: skeleton-loading 1s linear infinite alternate;
   }
 
   .title {
-    font-size: 14px;
-    font-weight: 400;
-    color: variables.$textColor;
+    height: 5px;
+    width: 100px;
+    border-radius: 10px;
+    background-color: variables.$skeletonsColor;
+    animation: skeleton-loading 1s linear infinite alternate;
   }
 }
 

@@ -17,6 +17,7 @@
   .backdrop {
     border-radius: 8px;
     height: fit-content;
+    cursor: pointer;
   }
 
   .backdrop:hover {
@@ -32,12 +33,14 @@
     opacity: 0.6;
     align-items: center;
     font-size: 12px;
+    cursor: pointer;
   }
 
   .title {
     font-size: 14px;
     font-weight: 400;
     color: variables.$textColor;
+    cursor: pointer;
   }
 }
 

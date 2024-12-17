@@ -1,0 +1,13 @@
+.container {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+  grid-template-rows: repeat(auto-fit, auto);
+  gap: 15px;
+}
+
+@media (min-width: 700px) {
+  .container {
+    grid-template-columns: repeat(auto-fit, 400px);
+  }
+}

@@ -18,3 +18,15 @@
     gap: 10px;
   }
 }
+
+@media (min-width: 700px) {
+  .container {
+    .label {
+      font-size: 25px;
+    }
+
+    .genresFlex {
+      gap: 15px;
+    }
+  }
+}

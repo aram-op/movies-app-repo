@@ -18,3 +18,15 @@
 
   }
 }
+
+@media (min-width: 700px) {
+  .container {
+    .label {
+      font-size: 25px;
+    }
+
+    .synopsis {
+      font-size: 22px;
+    }
+  }
+}

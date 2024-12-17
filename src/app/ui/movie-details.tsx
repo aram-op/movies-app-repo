@@ -33,22 +33,26 @@ function MovieDetails({id}: { id: string }) {
 
     if (details) return (
         <div className={styles.container}>
-            <img
-                src={`https://image.tmdb.org/t/p/w1280/${details.poster_path}`}
-                className={styles.poster}
-            />
-            <h1 className={styles.title}>{details.title}</h1>
+            <div className={styles.columns}>
+                <img
+                    src={`https://image.tmdb.org/t/p/w1280/${details.poster_path}`}
+                    className={styles.poster}
+                />
+                <div className={styles.containerFlex}>
+                    <h1 className={styles.title}>{details.title}</h1>
 
-            <p className={styles.tagline}>{details.tagline}</p>
+                    <p className={styles.tagline}>{details.tagline}</p>
 
-            <div className={styles.ratingContainer}>
-                <p className={styles.rating}>{(details.vote_average?.valueOf() / 2).toFixed(1)}</p>
-                <StarRating rating={details.vote_average}/>
+                    <div className={styles.ratingContainer}>
+                        <p className={styles.rating}>{(details.vote_average?.valueOf() / 2).toFixed(1)}</p>
+                        <StarRating rating={details.vote_average}/>
+                    </div>
+
+                    <MovieInfo details={details}/>
+
+                    {trailer && <Trailer id={trailer.key}/>}
+                </div>
             </div>
-
-            <MovieInfo details={details}/>
-
-            {trailer && <Trailer id={trailer.key}/>}
 
             <SharingLinks/>
 

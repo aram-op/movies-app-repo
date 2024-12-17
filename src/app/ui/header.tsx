@@ -6,29 +6,31 @@ import {useEffect, useState} from 'react';
 
 function Header() {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+    const [windowWidth, setWindowWidth] = useState<number>(0);
 
     useEffect(() => {
+        setWindowWidth(window.innerWidth);
+
         const handleResize = () => {
-            setWindowWidth(window.innerWidth);
+            setWindowWidth(window?.innerWidth);
         };
 
-        window.addEventListener('resize', handleResize);
+        window?.addEventListener('resize', handleResize);
 
         return () => {
-            window.removeEventListener('resize', handleResize);
+            window?.removeEventListener('resize', handleResize);
         };
     }, []);
 
     let searchbarLayout = <>
         <button className={styles.searchButton} onClick={() => setIsSearchOpen(true)}>
-            <img src="search.svg" width="25" height="25"/>
+            <img src="/search.svg" width="25" height="25"/>
             Search...
         </button>
         {isSearchOpen && <div className={styles.searchContainer}>
             <Searchbar/>
             <button className={styles.closeSearch} onClick={() => setIsSearchOpen(false)}>
-                <img src="cancel.svg" width="18" height="18"/>
+                <img src="/cancel.svg" width="18" height="18"/>
             </button>
         </div>}
     </>;
@@ -36,7 +38,7 @@ function Header() {
 
     if(windowWidth >= 700) {
         searchbarLayout = <>
-            <img src="search.svg" width="30" height="30"/>
+            <img src="/search.svg" width="30" height="30"/>
             <Searchbar/>
         </>
         themeButtonsSize = 25;
@@ -47,11 +49,11 @@ function Header() {
             {searchbarLayout}
             <div className={styles.themeToggleContainer}>
                 <button className={styles.themeButton}>
-                <img src="sun.svg" width={themeButtonsSize} height={themeButtonsSize}/>
+                <img src="/sun.svg" width={themeButtonsSize} height={themeButtonsSize}/>
                 </button>
-                <img src="divider.svg" width={themeButtonsSize} height={themeButtonsSize}/>
+                <img src="/divider.svg" width={themeButtonsSize} height={themeButtonsSize}/>
                 <button className={styles.themeButton}>
-                    <img src="moon.svg" width={themeButtonsSize} height={themeButtonsSize}/>
+                    <img src="/moon.svg" width={themeButtonsSize} height={themeButtonsSize}/>
                 </button>
             </div>
         </header>

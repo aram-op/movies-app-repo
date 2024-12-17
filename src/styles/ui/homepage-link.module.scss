@@ -1,0 +1,36 @@
+@use "../variables";
+
+.button {
+  width: 120px;
+  height: 35px;
+  border-radius: 8px;
+  border: none;
+  background-color: variables.$primaryColor;
+  padding: 5px 15px;
+  align-self: flex-start;
+
+  .link {
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .label {
+      color: white;
+      font-size: 16px;
+    }
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button:active {
+  opacity: 0.5;
+}

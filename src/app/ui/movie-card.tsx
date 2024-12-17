@@ -2,6 +2,7 @@ import {Movie} from '@/app/lib/movie.model';
 import styles from '@/styles/ui/movie-card.module.scss';
 import classNames from 'classnames';
 import {outfit} from '@/app/fonts';
+import {redirect} from 'next/navigation';
 
 function MovieCard({size, movie}: {size : 's' | 'm' | 'l', movie: Movie}) {
     let className : string;
@@ -19,7 +20,10 @@ function MovieCard({size, movie}: {size : 's' | 'm' | 'l', movie: Movie}) {
     }
 
     return(
-        <div className={classNames([styles.container], className)}>
+        <div
+            className={classNames([styles.container], className)}
+            onClick={() => redirect(`/movies/${movie.id}/details`)}
+        >
             <img
                 src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`}
                 className={styles.backdrop}

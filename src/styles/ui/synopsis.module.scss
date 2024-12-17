@@ -1,0 +1,20 @@
+@use "../variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .label {
+    font-size: 18px;
+    font-weight: 400;
+    color: variables.$textColor;
+  }
+
+  .synopsis {
+    font-size: 16px;
+    font-weight: 300;
+    color: variables.$textColor;
+
+  }
+}

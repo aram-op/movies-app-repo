@@ -1,0 +1,42 @@
+@use "../variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+  gap: 15px;
+
+  .poster {
+    height: 334px;
+    width: 250px;
+    border-radius: 8px;
+  }
+
+  .title {
+    color: variables.$textColor;
+    font-weight: 300;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .tagline {
+    font-size: 16px;
+    color: variables.$textColor;
+    font-weight: 300;
+    opacity: 0.5;
+    text-align: center;
+  }
+
+  .ratingContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .rating {
+      color: variables.$textColor;
+      font-weight: 300;
+      font-size: 30px;
+    }
+  }
+}

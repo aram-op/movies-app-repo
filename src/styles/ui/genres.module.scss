@@ -1,0 +1,20 @@
+@use "../variables";
+
+.container {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .label {
+    font-size: 18px;
+    font-weight: 400;
+    color: variables.$textColor;
+  }
+
+  .genresFlex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

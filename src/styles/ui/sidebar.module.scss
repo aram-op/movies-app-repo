@@ -46,11 +46,15 @@
     }
 
     .navLink {
-        opacity: 1;
+        opacity: 0.5;
+
+        .logo:hover {
+            filter: brightness(0) saturate(100%) invert(49%) sepia(21%) saturate(6105%) hue-rotate(331deg) brightness(99%) contrast(110%);
+        }
     }
 
     .active {
-        opacity: 0.5;
+        opacity: 1;
     }
 }
 

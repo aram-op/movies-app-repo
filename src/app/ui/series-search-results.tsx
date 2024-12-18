@@ -2,42 +2,47 @@
 
 import styles from '@/styles/ui/movies-by-genre.module.scss';
 import {useEffect, useState} from 'react';
-import {fetchMoviesByGenre} from '@/app/lib/data';
-import {Movie} from '@/app/lib/movie.model';
-import MovieCard from '@/app/ui/movie-card';
+import {fetchSeriesBySearch} from '@/app/lib/data';
 import ReactPaginate from 'react-paginate';
+import {Series} from '@/app/lib/series.model';
+import SeriesCard from '@/app/ui/series-card';
+import PageHeading from '@/app/ui/page-heading';
 
-function MoviesByGenre({genreId}: { genreId: string }) {
-    const [movies, setMovies] = useState<Movie[]>([]);
+function SeriesSearchResults({query}: { query: string }) {
+    const [results, setResults] = useState<Series[]>([]);
     const [totalPages, setTotalPages] = useState(1);
 
     useEffect(() => {
-        fetchMoviesByGenre(genreId, 1)
+        fetchSeriesBySearch(query, 1)
             .then((res) => {
-                setMovies(res.results);
-                //TMDB API limits the available page count to 500, even if in the results there are more
-                setTotalPages(res.total_pages < 500?  res.total_pages : 500);
+                setResults(res.results);
+                setTotalPages(res.total_pages < 500 ? res.total_pages : 500);
             })
             .catch(e => {
-                throw e;
+                throw e
             });
     }, []);
 
     function handlePageChange(pageNumber: number) {
-        fetchMoviesByGenre(genreId, pageNumber)
+        fetchSeriesBySearch(query, pageNumber)
             .then((res) => {
-                setMovies(res.results);
-                setTotalPages(res.total_pages < 500?  res.total_pages : 500);
+                setResults(res.results);
+                setTotalPages(res.total_pages < 500 ? res.total_pages : 500);
             })
             .catch(e => {
-                throw e;
+                throw e
             });
     }
 
+    if(results.length === 0) return (
+        <PageHeading heading={`No TV Series by query: "${query}" found.`}/>
+    );
+
     return (
         <>
+            <PageHeading heading={`TV Series search results for: "${query}"`}/>
             <div className={styles.container}>
-                {movies.map(movie => <MovieCard size={'m'} key={movie.id} movie={movie}/>)}
+                {results.map(item => <SeriesCard size={'m'} key={item.id} item={item}/>)}
             </div>
             <ReactPaginate
                 className={styles.paginator}
@@ -50,7 +55,7 @@ function MoviesByGenre({genreId}: { genreId: string }) {
                 breakLabel="..."
                 nextLabel=">"
                 previousLabel="<"
-                onPageChange={(s) => handlePageChange(s.selected+1)}
+                onPageChange={(s) => handlePageChange(s.selected + 1)}
                 pageRangeDisplayed={3}
                 renderOnZeroPageCount={null}
                 initialPage={0}
@@ -59,4 +64,4 @@ function MoviesByGenre({genreId}: { genreId: string }) {
     );
 }
 
-export default MoviesByGenre;
+export default SeriesSearchResults;

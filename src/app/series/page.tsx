@@ -4,7 +4,7 @@ import PageHeading from '@/app/ui/page-heading';
 export default function Page() {
     return(
         <>
-            <PageHeading heading={'Tv Series'}/>
+            <PageHeading heading={'TV Series'}/>
             <SeriesGenreList/>
         </>
     );

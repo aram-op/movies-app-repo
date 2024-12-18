@@ -128,7 +128,7 @@ export async function fetchSeriesTrailer(id: string): Promise<Video | undefined>
     throw new Error(`Response Status: ${response.status}`);
 }
 
-export async function fetchMovieGenres(): Promise<{genres: Genre[]}> {
+export async function fetchMovieGenres(): Promise<{ genres: Genre[] }> {
     const apikey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
     const options = {
@@ -148,7 +148,7 @@ export async function fetchMovieGenres(): Promise<{genres: Genre[]}> {
     throw new Error(`Response Status: ${response.status}`);
 }
 
-export async function fetchSeriesGenres(): Promise<{genres: Genre[]}> {
+export async function fetchSeriesGenres(): Promise<{ genres: Genre[] }> {
     const apikey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
     const options = {
@@ -168,7 +168,7 @@ export async function fetchSeriesGenres(): Promise<{genres: Genre[]}> {
     throw new Error(`Response Status: ${response.status}`);
 }
 
-export async function fetchMoviesByGenre(genreId: string): Promise<Movie[]> {
+export async function fetchMoviesByGenre(genreId: string, page: number) {
     const apikey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
     const options = {
@@ -179,17 +179,17 @@ export async function fetchMoviesByGenre(genreId: string): Promise<Movie[]> {
         }
     };
 
-    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}`, options);
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?page=${page}&with_genres=${genreId}`, options);
 
     if (response.ok) {
         const json = await response.json();
-        return json.results;
+        return json;
     }
 
     throw new Error(`Response Status: ${response.status}`);
 }
 
-export async function fetchSeriesByGenre(genreId: string): Promise<Series[]> {
+export async function fetchSeriesByGenre(genreId: string, page: number) {
     const apikey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
     const options = {
@@ -200,11 +200,13 @@ export async function fetchSeriesByGenre(genreId: string): Promise<Series[]> {
         }
     };
 
-    const response = await fetch(`https://api.themoviedb.org/3/discover/tv?with_genres=${genreId}`, options);
+    const response = await fetch(`https://api.themoviedb.org/3/discover/tv?page=${page}&with_genres=${genreId}`, options);
 
     if (response.ok) {
         const json = await response.json();
-        return json.results;
+        console.log(json)
+
+        return json;
     }
 
     throw new Error(`Response Status: ${response.status}`);
@@ -238,6 +240,48 @@ export async function fetchSeriesDetails(id: string) {
     if (response.ok) {
         const resp = await response.json();
         console.log(resp);
+        return resp;
+    }
+
+    throw new Error(`Response Status: ${response.status}`);
+}
+
+export async function fetchMoviesBySearch(query: string, page: number) {
+    const apikey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${apikey}`
+        }
+    };
+
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&language=en-US&page=${page}`, options);
+
+    if (response.ok) {
+        const resp = await response.json();
+        return resp;
+    }
+
+    throw new Error(`Response Status: ${response.status}`);
+}
+
+export async function fetchSeriesBySearch(query: string, page: number) {
+    const apikey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${apikey}`
+        }
+    };
+
+    const response = await fetch(`https://api.themoviedb.org/3/search/tv?query=${query}&language=en-US&page=${page}`, options);
+
+    if (response.ok) {
+        const resp = await response.json();
         return resp;
     }
 

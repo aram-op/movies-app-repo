@@ -1,0 +1,35 @@
+@use "variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+  gap: 20px;
+
+  .link {
+    font-size: 30px;
+    color: variables.$textColor;
+    background-color: variables.$secondaryColor;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .link:hover {
+    opacity: 0.8;
+  }
+
+  .link:active {
+    opacity: 0.5;
+  }
+}
+
+@media (min-width: 700px) {
+  .container {
+    gap: 50px;
+
+    .link {
+      font-size: 40px;
+      padding: 20px 50px;
+    }
+  }
+}

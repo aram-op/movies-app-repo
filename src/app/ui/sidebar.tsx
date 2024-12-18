@@ -37,15 +37,15 @@ function Sidebar() {
                 <div className={styles.navLinksContainer}>
                     <Link href={'/bookmarks'}
                           className={classNames([styles.navLink], {[styles.active]: pathname === '/bookmarks'})}>
-                        <img src="/bookmarks.svg" width="33" height="33"/>
+                        <img src="/bookmarks.svg" width="33" height="33" className={styles.logo}/>
                     </Link>
                     <Link href="/movies"
                           className={classNames([styles.navLink], {[styles.active]: pathname === '/movies'})}>
-                        <img src="/movie-tape.svg" width="25" height="25"/>
+                        <img src="/movie-tape.svg" width="25" height="25" className={styles.logo}/>
                     </Link>
                     <Link href={'/series'}
                           className={classNames([styles.navLink], {[styles.active]: pathname === '/series'})}>
-                        <img src="/tv.svg" width="28" height="28"/>
+                        <img src="/tv.svg" width="28" height="28" className={styles.logo}/>
                     </Link>
                 </div>
                 <Link href={'/profile'}>

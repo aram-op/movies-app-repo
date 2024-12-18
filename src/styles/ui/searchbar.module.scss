@@ -1,47 +1,51 @@
 @use '../variables';
 
 .searchbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
 
-  .searchField {
-    width: calc(100% - 50px);
-    height: 35px;
-    border: none;
-    padding: 5px 25px;
-    border-radius: 12px;
-    caret-color: variables.$textColor;
-    color: variables.$textColor;
-    background-color: variables.$secondaryColor;
-    outline: none;
-    font-size: 16px;
-  }
+  .form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  .searchField::placeholder {
-    color: variables.$placeholderColor;
-  }
+    .searchField {
+      width: calc(100% - 50px);
+      height: 35px;
+      border: none;
+      padding: 5px 25px;
+      border-radius: 12px;
+      caret-color: variables.$textColor;
+      color: variables.$textColor;
+      background-color: variables.$secondaryColor;
+      outline: none;
+      font-size: 16px;
+    }
 
-  .searchBtn {
-    height: 30px;
-    width: 45px;
-    font-size: 12px;
-    color: white;
-    background-color: variables.$primaryColor;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.2s;
-  }
+    .searchField::placeholder {
+      color: variables.$placeholderColor;
+    }
 
-  .searchBtn:hover {
-    transition: 0.2s;
-    opacity: 0.8;
-  }
+    .searchBtn {
+      height: 30px;
+      width: 45px;
+      font-size: 12px;
+      color: white;
+      background-color: variables.$primaryColor;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-  .searchBtn:active {
-    opacity: 0.5;
+    .searchBtn:hover {
+      transition: 0.2s;
+      opacity: 0.8;
+    }
+
+    .searchBtn:active {
+      opacity: 0.5;
+    }
   }
 }
 
@@ -49,16 +53,18 @@
   .searchbar {
     margin-left: 15px;
 
-    .searchField {
-      height: 45px;
-      width: calc(100% - 100px);
-      font-size: 20px;
-    }
+    .form {
+      .searchField {
+        height: 45px;
+        width: calc(100% - 100px);
+        font-size: 20px;
+      }
 
-    .searchBtn {
-      height: 40px;
-      width: 80px;
-      font-size: 16px;
+      .searchBtn {
+        height: 40px;
+        width: 80px;
+        font-size: 16px;
+      }
     }
   }
 }

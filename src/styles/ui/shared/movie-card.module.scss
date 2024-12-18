@@ -1,0 +1,109 @@
+@use "../../variables";
+
+.container {
+  margin-left: 15px;
+  padding-top: 10px;
+  width: fit-content;
+
+  @keyframes hoverAnim {
+    from {
+      transform: none;
+    }
+    to {
+      transform: skew(3deg, 3deg);
+    }
+  }
+
+  .backdrop {
+    border-radius: 8px;
+    cursor: pointer;
+    height: fit-content;
+  }
+
+  .backdrop:hover {
+    animation-direction: alternate;
+    animation-duration: 0.2s;
+    animation-iteration-count: 2;
+    animation-name: hoverAnim;
+  }
+
+  .info {
+    align-items: center;
+    color: variables.$textColor;
+    cursor: pointer;
+    display: flex;
+    font-size: 12px;
+    opacity: 0.6;
+  }
+
+  .title {
+    color: variables.$textColor;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.s {
+  .backdrop {
+    height: 63px;
+    width: 112px;
+  }
+}
+
+.m {
+  .backdrop {
+    height: 90px;
+    width: 160px;
+  }
+}
+
+.l {
+  .backdrop {
+    height: 117px;
+    width: 208px;
+  }
+}
+
+@media (min-width:700px) {
+  .container {
+    .info {
+      font-size: 16px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 400;
+    }
+  }
+
+  .s {
+    .backdrop {
+      height: 126px;
+      width: 224px;
+    }
+
+    .info {
+      font-size: 14px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 400;
+    }
+  }
+
+  .m {
+    .backdrop {
+      height: 180px;
+      width: 320px;
+    }
+  }
+
+  .l {
+    .backdrop {
+      height: 234px;
+      width: 416px;
+    }
+  }
+}

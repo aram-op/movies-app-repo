@@ -1,4 +1,4 @@
-import styles from '@/styles/ui/movie-genre-list.module.scss';
+import styles from '@/styles/ui/movies/movie-genre-list.module.scss';
 import GenreTileWireframe from '@/app/wireframes/genre-tile.wireframe';
 
 function GenreListWireframe() {

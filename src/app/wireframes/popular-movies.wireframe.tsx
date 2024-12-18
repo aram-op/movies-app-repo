@@ -1,4 +1,4 @@
-import styles from '@/styles/ui/trending-movies.module.scss';
+import styles from '@/styles/ui/movies/trending-movies.module.scss';
 import SectionHeadingWireframe from '@/app/wireframes/section-heading.wireframe';
 import MovieCardWireframe from '@/app/wireframes/movie-card.wireframe';
 

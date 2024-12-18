@@ -1,0 +1,26 @@
+@use "../../variables";
+
+.chip {
+  border: 1px solid variables.$textColor;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 1px 8px;
+  text-align: center;
+}
+
+.outlined {
+  background: transparent;
+  color: variables.$textColor;
+}
+
+.filled {
+  background: variables.$textColor;
+  color: invert(variables.$textColor);
+}
+
+@media (min-width: 700px) {
+  .chip {
+    font-size: 20px;
+    padding: 1px 8px;
+  }
+}

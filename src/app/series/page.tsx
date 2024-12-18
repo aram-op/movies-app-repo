@@ -1,5 +1,5 @@
-import SeriesGenreList from '@/app/ui/series-genre-list';
-import PageHeading from '@/app/ui/page-heading';
+import SeriesGenreList from '@/app/ui/series/series-genre-list';
+import PageHeading from '@/app/ui/shared/page-heading';
 
 export default function Page() {
     return(

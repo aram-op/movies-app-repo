@@ -1,0 +1,55 @@
+@use "../../variables";
+
+.container {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  width: 100%;
+
+  .titleContainer {
+    align-items: flex-end;
+    display: flex;
+    width: fit-content;
+
+    .title {
+      color: variables.$textColor;
+      font-size: 28px;
+      font-weight: 300;
+      margin-right: 20px;
+    }
+  }
+
+  .expand {
+    background: transparent;
+    border: none;
+    color: variables.$primaryColor;
+    cursor: pointer;
+    font-size: 10px;
+    transition: 0.2s;
+  }
+
+  .expand:hover {
+    opacity: 0.8;
+    transition: 0.2s;
+  }
+
+  .expand:active {
+    opacity: 0.5;
+  }
+}
+
+@media(min-width: 700px) {
+  .container {
+    .expand {
+      font-size: 13px;
+    }
+
+    .titleContainer {
+      .title {
+        font-size: 40px;
+        font-weight: 300;
+      }
+    }
+  }
+}

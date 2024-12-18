@@ -1,0 +1,63 @@
+@use "../../variables";
+
+.container {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, 200px);
+  grid-template-rows: repeat(auto-fit, auto);
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
+.paginator {
+  align-items: center;
+  background-color: variables.$secondaryColor;
+  border-radius: 8px;
+  color: variables.$textColor;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  height: fit-content;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 10px 10px;
+  width: 100%;
+}
+
+.page {
+  background-color: variables.$bg;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.page:hover {
+  opacity: 0.8;
+}
+
+.page:active {
+  opacity: 0.5;
+}
+
+.active {
+  border: 1px solid variables.$textColor;
+}
+
+
+@media (min-width: 700px) {
+  .container {
+    grid-template-columns: repeat(auto-fit, 400px);
+  }
+
+  .paginator {
+    justify-content: space-around;
+    justify-self: center;
+    width: 70%;
+  }
+
+  .page {
+    font-size: 18px;
+  }
+}

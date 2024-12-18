@@ -1,0 +1,55 @@
+@use "../../variables";
+
+.button {
+  align-self: flex-start;
+  background-color: variables.$primaryColor;
+  border: none;
+  border-radius: 8px;
+  height: 35px;
+  padding: 5px 15px;
+  width: 120px;
+
+  .link {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+
+    .label {
+      color: white;
+      font-size: 16px;
+    }
+  }
+
+  .icon {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button:active {
+  opacity: 0.5;
+}
+
+@media (min-width: 700px) {
+  .button {
+    height: 40px;
+    padding: 5px 20px;
+    width: 160px;
+
+    .link {
+      .label {
+        font-size: 20px;
+      }
+    }
+
+    .icon {
+      height: 22px;
+      width: 22px;
+    }
+  }
+}

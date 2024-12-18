@@ -10,15 +10,15 @@
 }
 
 .container {
-  width: fit-content;
   margin-left: 15px;
   padding-top: 10px;
+  width: fit-content;
 
   .backdrop {
+    animation: skeleton-loading 1s linear infinite alternate;
+    background-color: variables.$skeletonsColor;
     border-radius: 8px;
     height: fit-content;
-    background-color: variables.$skeletonsColor;
-    animation: skeleton-loading 1s linear infinite alternate;
   }
 
   .infoContainer {
@@ -27,41 +27,41 @@
   }
 
   .info {
-    height: 10px;
-    width: 60px;
-    border-radius: 10px;
-    background-color: variables.$skeletonsColor;
-    margin-bottom: 10px;
     animation: skeleton-loading 1s linear infinite alternate;
+    background-color: variables.$skeletonsColor;
+    border-radius: 10px;
+    height: 10px;
+    margin-bottom: 10px;
+    width: 60px;
   }
 
   .title {
+    animation: skeleton-loading 1s linear infinite alternate;
+    background-color: variables.$skeletonsColor;
+    border-radius: 10px;
     height: 15px;
     width: 100px;
-    border-radius: 10px;
-    background-color: variables.$skeletonsColor;
-    animation: skeleton-loading 1s linear infinite alternate;
   }
 }
 
 .s {
   .backdrop {
-    width: 112px;
     height: 63px;
+    width: 112px;
   }
 }
 
 .m {
   .backdrop {
-    width: 160px;
     height: 90px;
+    width: 160px;
   }
 }
 
 .l {
   .backdrop {
-    width: 208px;
     height: 117px;
+    width: 208px;
   }
 }
 
@@ -74,8 +74,8 @@
 
   .s {
     .backdrop {
-      width: 224px;
       height: 126px;
+      width: 224px;
     }
 
     .info {
@@ -90,15 +90,15 @@
 
   .m {
     .backdrop {
-      width: 320px;
       height: 180px;
+      width: 320px;
     }
   }
 
   .l {
     .backdrop {
-      width: 416px;
       height: 234px;
+      width: 416px;
     }
   }
 }

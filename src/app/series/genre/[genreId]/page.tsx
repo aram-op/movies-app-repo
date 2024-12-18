@@ -1,6 +1,6 @@
 import {fetchSeriesGenreById} from '@/app/lib/data';
-import PageHeading from '@/app/ui/page-heading';
-import SeriesByGenre from '@/app/ui/series-by-genre';
+import PageHeading from '@/app/ui/shared/page-heading';
+import SeriesByGenre from '@/app/ui/series/series-by-genre';
 
 export default async function Page({params}: { params: Promise<{ genreId: string }> }) {
     const genreId = (await params).genreId;

@@ -1,14 +1,14 @@
 @use "../variables";
 
 .toggleSidebar {
-    z-index: 998;
-    position: fixed;
-    left: 20px;
-    top: 25px;
     background: transparent;
     border:none;
     cursor: pointer;
+    left: 20px;
+    position: fixed;
+    top: 25px;
     transition: 0.2s;
+    z-index: 998;
 }
 
 .toggleSidebar:hover {
@@ -29,12 +29,12 @@
     height: 80%;
     justify-content: space-between;
     left: -100px;
+    padding: 30px 10px;
     position: fixed;
     top: 10%;
-    width: 70px;
-    padding: 30px 10px;
-    z-index: 1;
     transition: 0.3s;
+    width: 70px;
+    z-index: 1;
     z-index: 1000;
 
     .navLinksContainer {
@@ -58,10 +58,10 @@
     }
 
     .avatar {
-        border-radius: 50%;
         border: 1px solid variables.$textColor;
-        width: 35px;
+        border-radius: 50%;
         height: 35px;
+        width: 35px;
     }
 }
 
@@ -71,20 +71,20 @@
 }
 
 .overlay {
+    background-color: rgba(53, 55, 70, 0.5);
+    height: 100%;
+    left: 0;
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(53, 55, 70, 0.5);
     z-index: 900;
 }
 
 
 @media (min-width: 700px) {
     .sidebar {
-        position: fixed;
         left: 20px;
+        position: fixed;
         top: max(10%, 25px);
     }
 }

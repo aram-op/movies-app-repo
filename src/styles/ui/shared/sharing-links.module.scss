@@ -1,0 +1,42 @@
+@use "../../variables";
+
+.container {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .icon {
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  .label {
+    color: variables.$textColor;
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+
+@media (min-width: 700px) {
+  .container {
+    .icons {
+      gap: 15px;
+
+      .icon {
+        height: 35px;
+        width: 35px;
+      }
+    }
+
+    .label {
+      font-size: 25px;
+    }
+  }
+}

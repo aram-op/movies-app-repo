@@ -10,33 +10,33 @@
 }
 
 .container {
-  display: flex;
   align-items: flex-end;
+  display: flex;
   justify-content: space-between;
   padding-left: 20px;
 
   .titleContainer {
-    display: flex;
     align-items: flex-end;
+    display: flex;
     width: fit-content;
 
     .title {
-      width: 130px;
-      height: 30px;
+      animation: skeleton-loading 1s linear infinite alternate;
       background-color: variables.$skeletonsColor;
       border-radius: 18px;
+      height: 30px;
       margin-right: 20px;
-      animation: skeleton-loading 1s linear infinite alternate;
+      width: 130px;
     }
   }
 
   .expand {
-    width: 55px;
-    height: 10px;
-    border-radius: 8px;
-    background-color: variables.$skeletonsColor;
     animation: skeleton-loading 1s linear infinite alternate;
+    background-color: variables.$skeletonsColor;
+    border-radius: 8px;
     color: transparent;
+    height: 10px;
+    width: 55px;
   }
 }
 
@@ -44,14 +44,14 @@
   .container {
     .titleContainer {
       .title {
-        width: 155px;
         height: 50px;
+        width: 155px;
       }
     }
 
     .expand {
-      width: 70px;
       height: 15px;
+      width: 70px;
     }
   }
 }

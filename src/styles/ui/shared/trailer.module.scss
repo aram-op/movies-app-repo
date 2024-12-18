@@ -1,0 +1,19 @@
+.container {
+  height: fit-content;
+  width: fit-content;
+
+  .player {
+    border-radius: 8px;
+    height: 163px;
+    width: 290px;
+  }
+}
+
+@media (min-width: 700px) {
+  .container {
+    .player {
+      height: 281px;
+      width: 500px;
+    }
+  }
+}

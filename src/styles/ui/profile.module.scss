@@ -1,10 +1,10 @@
 @use "../variables";
 
 .container {
-  padding: 5%;
   display: flex;
   flex-direction: column;
   gap: 30px;
+  padding: 5%;
 
   .infoItem {
     display: flex;
@@ -23,14 +23,14 @@
   }
 
   .logout {
-    width: 150px;
     background-color: variables.$primaryColor;
-    height: 35px;
-    border-radius: 8px;
     border: none;
-    cursor: pointer;
+    border-radius: 8px;
     color: white;
+    cursor: pointer;
     font-size: 18px;
+    height: 35px;
+    width: 150px;
   }
 
   .logout:hover {

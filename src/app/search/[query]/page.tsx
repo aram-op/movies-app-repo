@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '@/styles/search-page.module.scss';
-import PageHeading from '@/app/ui/page-heading';
+import PageHeading from '@/app/ui/shared/page-heading';
 
 export default async function Page({params}: { params: Promise<{ query: string }> }) {
     const query = (await params).query;

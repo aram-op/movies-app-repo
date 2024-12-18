@@ -1,0 +1,21 @@
+@use "../../variables";
+
+.starRating {
+  position: relative;
+
+  .starsOutlined, .starsFilled {
+    display: flex;
+  }
+
+  .starsFilled {
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+  }
+
+  .icon {
+    height: 30px;
+    width: 30px;
+  }
+}

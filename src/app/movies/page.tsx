@@ -1,5 +1,5 @@
-import MovieGenreList from '@/app/ui/movie-genre-list';
-import PageHeading from '@/app/ui/page-heading';
+import MovieGenreList from '@/app/ui/movies/movie-genre-list';
+import PageHeading from '@/app/ui/shared/page-heading';
 
 export default function Page() {
     return(

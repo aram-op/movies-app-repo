@@ -1,4 +1,4 @@
-import styles from '@/styles/ui/movies-by-genre.module.scss';
+import styles from '@/styles/ui/movies/movies-by-genre.module.scss';
 import MovieCardWireframe from '@/app/wireframes/movie-card.wireframe';
 
 function MovieGridWireframe() {

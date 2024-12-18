@@ -10,11 +10,11 @@
 }
 
 .chip {
-  width: 55px;
-  height: 15px;
+  animation: skeleton-loading 1s linear infinite alternate;
   background-color: variables.$skeletonsColor;
   border-radius: 6px;
-  animation: skeleton-loading 1s linear infinite alternate;
+  height: 15px;
+  width: 55px;
 }
 
 @media (min-width: 700px) {

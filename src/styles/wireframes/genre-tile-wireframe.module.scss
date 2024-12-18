@@ -10,9 +10,9 @@
 }
 
 .container {
-  width: 150px;
-  height: 100px;
-  background-color: variables.$skeletonsColor;
   animation: skeleton-loading 1s linear infinite alternate;
+  background-color: variables.$skeletonsColor;
   border-radius: 8px;
+  height: 100px;
+  width: 150px;
 }

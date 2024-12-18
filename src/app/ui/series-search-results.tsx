@@ -7,16 +7,19 @@ import ReactPaginate from 'react-paginate';
 import {Series} from '@/app/lib/series.model';
 import SeriesCard from '@/app/ui/series-card';
 import PageHeading from '@/app/ui/page-heading';
+import MovieGridWireframe from '@/app/wireframes/movie-grid.wireframe';
 
 function SeriesSearchResults({query}: { query: string }) {
     const [results, setResults] = useState<Series[]>([]);
     const [totalPages, setTotalPages] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetchSeriesBySearch(query, 1)
             .then((res) => {
                 setResults(res.results);
                 setTotalPages(res.total_pages < 500 ? res.total_pages : 500);
+                setIsLoading(false);
             })
             .catch(e => {
                 throw e
@@ -34,9 +37,12 @@ function SeriesSearchResults({query}: { query: string }) {
             });
     }
 
+    if(isLoading) return <MovieGridWireframe/>;
+
     if(results.length === 0) return (
         <PageHeading heading={`No TV Series by query: "${query}" found.`}/>
     );
+
 
     return (
         <>

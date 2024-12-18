@@ -6,15 +6,18 @@ import {fetchSeriesByGenre} from '@/app/lib/data';
 import {Series} from '@/app/lib/series.model';
 import SeriesCard from '@/app/ui/series-card';
 import ReactPaginate from 'react-paginate';
+import MovieGridWireframe from '@/app/wireframes/movie-grid.wireframe';
 
 function SeriesByGenre({genreId}: { genreId: string }) {
     const [series, setSeries] = useState<Series[]>([]);
     const [totalPages, setTotalPages] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetchSeriesByGenre(genreId, 1)
             .then((res) => {
                 setSeries(res.results);
+                setIsLoading(false);
                 //TMDB API limits the available page count to 500, even if in the results there are more
                 setTotalPages(res.total_pages < 500 ? res.total_pages : 500);
             })
@@ -33,6 +36,8 @@ function SeriesByGenre({genreId}: { genreId: string }) {
                 throw e;
             });
     }
+
+    if(isLoading) return <MovieGridWireframe/>;
 
     return (
         <>

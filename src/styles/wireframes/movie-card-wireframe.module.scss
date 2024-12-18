@@ -27,16 +27,16 @@
   }
 
   .info {
-    height: 5px;
+    height: 10px;
     width: 60px;
     border-radius: 10px;
     background-color: variables.$skeletonsColor;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     animation: skeleton-loading 1s linear infinite alternate;
   }
 
   .title {
-    height: 5px;
+    height: 15px;
     width: 100px;
     border-radius: 10px;
     background-color: variables.$skeletonsColor;
@@ -67,13 +67,8 @@
 
 @media (min-width:700px) {
   .container {
-    .info {
-      font-size: 16px;
-    }
-
     .title {
-      font-size: 20px;
-      font-weight: 400;
+      height: 22px;
     }
   }
 

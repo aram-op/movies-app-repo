@@ -7,16 +7,19 @@ import {fetchMoviesBySearch} from '@/app/lib/data';
 import MovieCard from '@/app/ui/movie-card';
 import ReactPaginate from 'react-paginate';
 import PageHeading from '@/app/ui/page-heading';
+import MovieGridWireframe from '@/app/wireframes/movie-grid.wireframe';
 
 function MovieSearchResults({query}: { query: string }) {
     const [results, setResults] = useState<Movie[]>([]);
     const [totalPages, setTotalPages] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetchMoviesBySearch(query, 1)
             .then((res) => {
                 setResults(res.results);
                 setTotalPages(res.total_pages < 500 ? res.total_pages : 500);
+                setIsLoading(false);
             })
             .catch(e => {
                 throw e
@@ -33,6 +36,8 @@ function MovieSearchResults({query}: { query: string }) {
                 throw e
             });
     }
+
+    if(isLoading) return <MovieGridWireframe/>;
 
     if(results.length === 0) return (
         <PageHeading heading={`No movies by query: "${query}" found.`}/>

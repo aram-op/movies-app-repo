@@ -9,17 +9,10 @@
   }
 }
 
-.chip {
-  width: 55px;
-  height: 15px;
+.container {
+  width: 150px;
+  height: 100px;
   background-color: variables.$skeletonsColor;
-  border-radius: 6px;
   animation: skeleton-loading 1s linear infinite alternate;
-}
-
-@media (min-width: 700px) {
-  .chip {
-    width: 92px;
-    height: 29px;
-  }
+  border-radius: 8px;
 }

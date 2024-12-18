@@ -5,11 +5,14 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import {usePathname} from 'next/navigation';
 import {useEffect, useState} from 'react';
+import {useUser} from '@auth0/nextjs-auth0/client';
+import ProfileAvatarWireframe from '@/app/wireframes/profile-avatar.wireframe';
 
 function Sidebar() {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [windowWidth, setWindowWidth] = useState<number>(0);
+    const {user} = useUser();
 
     useEffect(() => {
         setWindowWidth(window.innerWidth);
@@ -49,7 +52,13 @@ function Sidebar() {
                     </Link>
                 </div>
                 <Link href={'/profile'}>
-                    {/*profile avatar*/}
+                    {user?.picture ? <img
+                        src={user?.picture}
+                        alt={user?.name ? user.name : undefined}
+                        width={35}
+                        height={35}
+                        className={styles.avatar}
+                    /> : <ProfileAvatarWireframe/>}
                 </Link>
             </div>
 

@@ -1,10 +1,11 @@
 import styles from '@/styles/ui/shared/movie-card.module.scss';
 import classNames from 'classnames';
 import {outfit} from '@/app/fonts';
-import {redirect} from 'next/navigation';
+import {useRouter} from 'next/navigation';
 import {Series} from '@/app/lib/series.model';
 
 function SeriesCard({size, item}: { size: 's' | 'm' | 'l', item: Series }) {
+    const {push} = useRouter();
     let className: string;
 
     switch (size) {
@@ -22,7 +23,7 @@ function SeriesCard({size, item}: { size: 's' | 'm' | 'l', item: Series }) {
     return (
         <div
             className={classNames([styles.container], className)}
-            onClick={() => redirect(`/series/${item.id}/details`)}
+            onClick={() => push(`/series/${item.id}/details`)}
         >
             <img
                 src={`https://image.tmdb.org/t/p/w1280/${item.backdrop_path}`}

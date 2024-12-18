@@ -2,14 +2,14 @@
 
 import styles from '@/styles/ui/shared/genre-tile.module.scss';
 import {Genre} from '@/app/lib/genre.model';
-import {redirect} from 'next/navigation';
 
 function GenreTile({genre, isMovie}: { genre: Genre, isMovie: boolean }) {
+
     function handleClick() {
         if (isMovie) {
-            redirect(`/movies/genre/${genre.id}`);
+            window.location.href = `/movies/genre/${genre.id}`;
         }
-        redirect(`series/genre/${genre.id}`);
+        window.location.href = `series/genre/${genre.id}`;
     }
 
     return (

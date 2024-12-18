@@ -1,0 +1,55 @@
+@use "../variables";
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: variables.$skeletonsColor;
+  }
+  100% {
+    background-color: variables.$skeletonsColor2;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 5%;
+
+  .avatar {
+    animation: skeleton-loading 1s linear infinite alternate;
+    background-color: variables.$skeletonsColor;
+    height: 100px;
+    width: 100px;
+  }
+
+  .infoItem {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .label {
+      animation: skeleton-loading 1s linear infinite alternate;
+      background-color: variables.$skeletonsColor;
+      border-radius: 25px;
+      height: 38px;
+      width: 130px;
+    }
+
+    .info {
+      animation: skeleton-loading 1s linear infinite alternate;
+      background-color: variables.$skeletonsColor;
+      border-radius: 15px;
+      height: 25px;
+      width: 170px;
+    }
+
+  }
+
+  .logout {
+    animation: skeleton-loading 1s linear infinite alternate;
+    background-color: variables.$skeletonsColor;
+    border-radius: 8px;
+    height: 35px;
+    width: 150px;
+  }
+}

@@ -4,14 +4,16 @@ import styles from '@/styles/ui/profile.module.scss';
 import {useUser} from '@auth0/nextjs-auth0/client';
 import classNames from 'classnames';
 import {outfit} from '@/app/fonts';
-import {redirect, useRouter} from 'next/navigation';
+import ProfileWireframe from '@/app/wireframes/profile.wireframe';
 
 function Profile() {
-    const {user, error, isLoading} = useUser();
+    const {user, isLoading} = useUser();
 
     function handleLogout() {
         window.location.href = '/api/auth/logout';
     }
+
+    if(isLoading) return <ProfileWireframe/>
 
     return (
         <div className={styles.container}>

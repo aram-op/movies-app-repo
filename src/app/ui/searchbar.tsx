@@ -1,12 +1,13 @@
 'use client';
 
 import styles from '@/styles/ui/searchbar.module.scss';
-import {redirect} from 'next/navigation';
+import {useRouter} from 'next/navigation';
 import {useDebouncedCallback} from 'use-debounce';
 import {FormEvent, useState} from 'react';
 
 function Searchbar() {
     const [query, setQuery] = useState('');
+    const {push} = useRouter();
 
     const handleChange = useDebouncedCallback((term: string) => {
         setQuery(term);
@@ -16,7 +17,7 @@ function Searchbar() {
         e.preventDefault();
 
         if (query && query.trim() !== '') {
-            redirect(`/search/${query}`);
+            push(`/search/${query}`);
         }
     }
 

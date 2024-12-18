@@ -4,6 +4,7 @@ import React from 'react';
 import Sidebar from '@/app/ui/sidebar';
 import Header from '@/app/ui/header';
 import {outfit} from '@/app/fonts';
+import {UserProvider} from '@auth0/nextjs-auth0/client';
 
 
 export const metadata: Metadata = {
@@ -14,13 +15,16 @@ export const metadata: Metadata = {
 export default function RootLayout({children,}: Readonly<{ children: React.ReactNode; }>) {
     return (
         <html lang="en">
-        <body className={outfit.className}>
-        <Sidebar/>
-        <Header/>
-        <main>
-            {children}
-        </main>
-        </body>
+        <UserProvider>
+            <body className={outfit.className}>
+            <Sidebar/>
+            <Header/>
+            <main>
+                {children}
+            </main>
+            </body>
+        </UserProvider>
+
         </html>
     );
 }

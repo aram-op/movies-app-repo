@@ -1,7 +1,6 @@
 import {Movie} from '@/app/lib/movie.model';
 import {Video} from '@/app/lib/video-response.model';
 import {Genre} from '@/app/lib/genre.model';
-import {Series} from '@/app/lib/series.model';
 
 export async function fetchTrendingMovies(): Promise<Movie[]> {
     const apikey = process.env.NEXT_PUBLIC_TMDB_API_KEY;

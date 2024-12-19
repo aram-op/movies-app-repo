@@ -8,6 +8,7 @@ function GenreTile({genre, isMovie}: { genre: Genre, isMovie: boolean }) {
     function handleClick() {
         if (isMovie) {
             window.location.href = `/movies/genre/${genre.id}`;
+            return;
         }
         window.location.href = `series/genre/${genre.id}`;
     }

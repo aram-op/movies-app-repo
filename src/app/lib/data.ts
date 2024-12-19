@@ -1,6 +1,8 @@
 import {Movie} from '@/app/lib/movie.model';
 import {Video} from '@/app/lib/video-response.model';
 import {Genre} from '@/app/lib/genre.model';
+import {createPool} from '@vercel/postgres';
+import {Series} from '@/app/lib/series.model';
 
 const apikey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
@@ -11,6 +13,10 @@ const options = {
         Authorization: `Bearer ${apikey}`
     }
 };
+
+const pool = createPool({
+    connectionString: process.env.NEXT_PUBLIC_POSTGRES_URL,
+});
 
 export async function fetchTrendingMovies(): Promise<Movie[]> {
     const response = await fetch('https://api.themoviedb.org/3/trending/movie/week?language=en-US', options);
@@ -157,4 +163,82 @@ export async function fetchSeriesBySearch(query: string, page: number) {
     }
 
     throw new Error(`Response Status: ${response.status}`);
+}
+
+export async function addMovieBookmark(movieId: number, userEmail: string) {
+    try {
+        const result = await pool.sql`
+            INSERT INTO bookmarked_movies (movie_id, user_email)
+             VALUES
+             (${movieId}, ${userEmail})
+             ON CONFLICT (id) DO NOTHING;
+        `;
+        return result.rows[0];
+    } catch (error) {
+        console.error('Database Error:', error);
+        throw new Error('Failed to add bookmark.')
+    }
+}
+
+export async function fetchBookmarkedMovies(userEmail: string): Promise<Movie[]> {
+    try {
+        const movieIds = await pool.sql<{ movie_id: number }>`
+            SELECT movie_id FROM bookmarked_movies WHERE user_email = ${userEmail};
+        `;
+
+        return await fetchMoviesByIds(movieIds.rows);
+
+    } catch (error) {
+        console.error('Database Error:', error);
+        throw new Error('Failed to fetch todos.');
+    }
+}
+
+export async function fetchMoviesByIds(data: { movie_id: number }[]): Promise<Movie[]> {
+    const movies: Movie[] = [];
+
+    for (const item of data) {
+        movies.push(await fetchMovieDetails(item.movie_id.toString()));
+    }
+
+    return movies;
+}
+
+export async function addSeriesBookmark(seriesId: number, userEmail: string) {
+    try {
+        const result = await pool.sql`
+            INSERT INTO bookmarked_series (series_id, user_email)
+             VALUES
+             (${seriesId}, ${userEmail})
+             ON CONFLICT (id) DO NOTHING;
+        `;
+        return result.rows[0];
+    } catch (error) {
+        console.error('Database Error:', error);
+        throw new Error('Failed to add bookmark.')
+    }
+}
+
+export async function fetchBookmarkedSeries(userEmail: string): Promise<Series[]> {
+    try {
+        const seriesIds = await pool.sql<{ series_id: number }>`
+            SELECT series_id FROM bookmarked_series WHERE user_email = ${userEmail};
+        `;
+
+        return await fetchSeriesByIds(seriesIds.rows);
+
+    } catch (error) {
+        console.error('Database Error:', error);
+        throw new Error('Failed to fetch todos.');
+    }
+}
+
+export async function fetchSeriesByIds(data: { series_id: number }[]): Promise<Series[]> {
+    const results: Series[] = [];
+
+    for (const item of data) {
+        results.push(await fetchSeriesDetails(item.series_id.toString()));
+    }
+
+    return results;
 }

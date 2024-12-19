@@ -1,7 +1,7 @@
 'use client';
 
 import {useEffect, useState} from 'react';
-import {fetchMovieDetails, fetchMovieTrailer} from '@/app/lib/data';
+import {addMovieBookmark, fetchMovieDetails, fetchMovieTrailer} from '@/app/lib/data';
 import {Movie} from '@/app/lib/movie.model';
 import styles from '@/styles/ui/movies/movie-details.module.scss';
 import StarRating from '@/app/ui/shared/star-rating';
@@ -13,10 +13,14 @@ import Casts from '@/app/ui/shared/casts';
 import Synopsis from '@/app/ui/shared/synopsis';
 import HomepageLink from '@/app/ui/shared/homepage-link';
 import SharingLinks from '@/app/ui/shared/sharing-links';
+import {useUser} from '@auth0/nextjs-auth0/client';
+import classNames from 'classnames';
+import {outfit} from '@/app/fonts';
 
 function MovieDetails({id}: { id: string }) {
     const [details, setDetails] = useState<Movie>();
     const [trailer, setTrailer] = useState<Video | undefined>();
+    const {user} = useUser();
 
     useEffect(() => {
         fetchMovieDetails(id)
@@ -30,6 +34,16 @@ function MovieDetails({id}: { id: string }) {
                 throw e
             });
     }, []);
+
+    async function handleAddToBookmarks() {
+        if(details?.id && user?.email) {
+            try {
+                await addMovieBookmark(details.id, user.email);
+            } catch (error) {
+                throw error;
+            }
+        }
+    }
 
     if (details) return (
         <div className={styles.container}>
@@ -53,6 +67,15 @@ function MovieDetails({id}: { id: string }) {
                     {trailer && <Trailer id={trailer.key}/>}
                 </div>
             </div>
+
+            <button
+                type={'button'}
+                className={classNames([styles.addToBookmarks], outfit.className)}
+                onClick={handleAddToBookmarks}
+            >
+                <span>Add to bookmarks</span>
+                <img src="/plus.svg" width={25} height={25}/>
+            </button>
 
             <SharingLinks/>
 

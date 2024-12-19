@@ -1,5 +1,3 @@
-'use client';
-
 import styles from '@/styles/ui/shared/chip.module.scss';
 import classNames from 'classnames';
 

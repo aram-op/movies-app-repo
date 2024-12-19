@@ -12,36 +12,38 @@ function SeriesSearchResults({query}: { query: string }) {
     const [results, setResults] = useState<Series[]>([]);
     const [totalPages, setTotalPages] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetchSeriesBySearch(query, 1)
-            .then((res) => {
-                setResults(res.results);
-                setTotalPages(res.total_pages < 500 ? res.total_pages : 500);
-                setIsLoading(false);
-            })
-            .catch(e => {
-                throw e
-            });
+        getResults(1);
     }, [query]);
 
-    function handlePageChange(pageNumber: number) {
+    function getResults(pageNumber: number) {
         fetchSeriesBySearch(query, pageNumber)
             .then((res) => {
                 setResults(res.results);
                 setTotalPages(res.total_pages < 500 ? res.total_pages : 500);
+                setIsLoading(false);
+                if(error) setError(null);
             })
             .catch(e => {
-                throw e
+                console.error(e);
+                setError(e);
+                setIsLoading(false);
             });
     }
+
+    function handlePageChange(pageNumber: number) {
+        getResults(pageNumber);
+    }
+
+    if(error) throw new Error('Failed to fetch search results');
 
     if (isLoading) return <MovieGridWireframe/>;
 
     if (results.length === 0) return (
         <PageHeading heading={`No TV Series by query: "${query}" found.`}/>
     );
-
 
     return (
         <>

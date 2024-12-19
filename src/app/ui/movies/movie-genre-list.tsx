@@ -10,17 +10,23 @@ import GenreListWireframe from '@/app/wireframes/genre-list.wireframe';
 function MovieGenreList() {
     const [genres, setGenres] = useState<Genre[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetchMovieGenres()
             .then((res) => {
                 setGenres(res.genres);
                 setIsLoading(false);
+                if (error) setError(null);
             })
             .catch(e => {
-                throw e
+                console.error(e);
+                setError(e);
+                setIsLoading(false);
             });
     }, []);
+
+    if (error) throw new Error('Failed to fetch genres');
 
     if (isLoading) return <GenreListWireframe/>;
 

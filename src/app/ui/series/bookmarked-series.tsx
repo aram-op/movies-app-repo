@@ -10,7 +10,8 @@ import SeriesGrid from '@/app/ui/shared/series-grid';
 function BookmarkedSeries() {
     const [series, setSeries] = useState<Series[]>([]);
     const [isFetching, setIsFetching] = useState(true);
-    const {user, isLoading} = useUser();
+    const [fetchError, setFetchError] = useState(null);
+    const {user, isLoading, error} = useUser();
 
     useEffect(() => {
         if (!isLoading && user) {
@@ -18,14 +19,17 @@ function BookmarkedSeries() {
                 .then((res) => {
                     setSeries(res);
                     setIsFetching(false);
+                    if (fetchError) setFetchError(null);
                 })
                 .catch(e => {
+                    console.error(e);
+                    setFetchError(e);
                     setIsFetching(false);
-                    throw e;
                 });
         }
     }, [isLoading, user]);
 
+    if (error || fetchError) throw new Error('Failed to fetch bookmarked series');
 
     if (isFetching) return <MovieGridWireframe/>
 

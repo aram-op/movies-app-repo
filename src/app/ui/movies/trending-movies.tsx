@@ -12,12 +12,19 @@ function TrendingMovies() {
     const [movies, setMovies] = useState<Movie[]>([]);
     const [isExpanded, setIsExpanded] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetchTrendingMovies()
-            .then((res) => {setMovies(res); setIsLoading(false)})
+            .then((res) => {
+                setMovies(res);
+                setIsLoading(false);
+                if (error) setError(null);
+            })
             .catch((err) => {
-                throw err
+                console.error(err);
+                setError(err);
+                setIsLoading(false);
             });
     }, []);
 
@@ -25,7 +32,9 @@ function TrendingMovies() {
         setIsExpanded(!isExpanded);
     }
 
-    if(isLoading) return <TrendingMoviesWireframe/>
+    if (error) throw new Error('Failed to fetch trending movies');
+
+    if (isLoading) return <TrendingMoviesWireframe/>
 
     return (
         <div className={styles.container}>

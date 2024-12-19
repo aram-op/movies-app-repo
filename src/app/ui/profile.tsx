@@ -7,11 +7,13 @@ import {outfit} from '@/app/fonts';
 import ProfileWireframe from '@/app/wireframes/profile.wireframe';
 
 function Profile() {
-    const {user, isLoading} = useUser();
+    const {user, isLoading, error} = useUser();
 
     function handleLogout() {
         window.location.href = '/api/auth/logout';
     }
+
+    if(error) throw new Error('Failed to fetch profile');
 
     if(isLoading) return <ProfileWireframe/>
 

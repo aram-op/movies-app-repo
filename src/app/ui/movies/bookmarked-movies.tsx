@@ -10,7 +10,8 @@ import MoviesGrid from '@/app/ui/shared/movies-grid';
 function BookmarkedMovies() {
     const [movies, setMovies] = useState<Movie[]>([]);
     const [isFetching, setIsFetching] = useState(true);
-    const {user, isLoading} = useUser();
+    const [fetchError, setFetchError] = useState(null);
+    const {user, isLoading, error} = useUser();
 
     useEffect(() => {
         if (!isLoading && user) {
@@ -18,13 +19,17 @@ function BookmarkedMovies() {
                 .then((res) => {
                     setMovies(res);
                     setIsFetching(false);
+                    if (fetchError) setFetchError(null);
                 })
                 .catch(e => {
                     setIsFetching(false);
-                    throw e;
+                    console.error(e);
+                    setFetchError(e);
                 });
         }
     }, [isLoading, user]);
+
+    if (error || fetchError) throw new Error('Failed to fetch bookmarked movies');
 
 
     if (isFetching) return <MovieGridWireframe/>

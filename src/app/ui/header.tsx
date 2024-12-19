@@ -22,21 +22,23 @@ function Header() {
         };
     }, []);
 
-    let searchbarLayout = <>
-        <button className={styles.searchButton} onClick={() => setIsSearchOpen(true)}>
-            <img src="/search.svg" width="25" height="25"/>
-            Search...
-        </button>
-        {isSearchOpen && <div className={styles.searchContainer}>
-            <Searchbar/>
-            <button className={styles.closeSearch} onClick={() => setIsSearchOpen(false)}>
-                <img src="/cancel.svg" width="18" height="18"/>
-            </button>
-        </div>}
-    </>;
     let themeButtonsSize = 20;
+    let searchbarLayout = (
+        <>
+            <button className={styles.searchButton} onClick={() => setIsSearchOpen(true)}>
+                <img src="/search.svg" width="25" height="25"/>
+                Search...
+            </button>
+            {isSearchOpen && <div className={styles.searchContainer}>
+                <Searchbar/>
+                <button className={styles.closeSearch} onClick={() => setIsSearchOpen(false)}>
+                    <img src="/cancel.svg" width="18" height="18"/>
+                </button>
+            </div>}
+        </>
+    );
 
-    if(windowWidth >= 700) {
+    if (windowWidth >= 700) {
         searchbarLayout = <>
             <img src="/search.svg" width="30" height="30"/>
             <Searchbar/>
@@ -49,7 +51,7 @@ function Header() {
             {searchbarLayout}
             <div className={styles.themeToggleContainer}>
                 <button className={styles.themeButton}>
-                <img src="/sun.svg" width={themeButtonsSize} height={themeButtonsSize}/>
+                    <img src="/sun.svg" width={themeButtonsSize} height={themeButtonsSize}/>
                 </button>
                 <img src="/divider.svg" width={themeButtonsSize} height={themeButtonsSize}/>
                 <button className={styles.themeButton}>

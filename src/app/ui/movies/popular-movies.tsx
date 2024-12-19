@@ -13,33 +13,39 @@ function PopularMovies() {
     const [moviesPage2, setMoviesPage2] = useState<Movie[]>([]);
     const [isExpanded, setIsExpanded] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetchPopularMovies(1)
+        getResults(1);
+    }, []);
+
+    function getResults(page: 1 | 2) {
+        fetchPopularMovies(page)
             .then((res) => {
-                setMoviesPage1(res);
+                if (page === 1) {
+                    setMoviesPage1(res)
+                } else {
+                    setMoviesPage2(res)
+                }
                 setIsLoading(false);
+                if (error) setError(null);
             })
             .catch((err) => {
-                throw err
+                console.error(err);
+                setError(err);
+                setIsLoading(false);
             });
-    }, []);
+    }
 
     function handleExpandSection() {
         if (!isExpanded) {
             setIsLoading(true);
-            fetchPopularMovies(2)
-                .then((res) => {
-                    setMoviesPage2(res);
-                    setIsLoading(false);
-                })
-                .catch((err) => {
-                    throw err
-                });
+            getResults(2);
         }
-
         setIsExpanded(!isExpanded);
     }
+
+    if (error) throw new Error('Failed to fetch popular movies');
 
     if (isLoading) return <PopularMoviesWireframe/>;
 

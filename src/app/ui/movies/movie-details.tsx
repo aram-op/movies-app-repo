@@ -20,30 +20,42 @@ import {outfit} from '@/app/fonts';
 function MovieDetails({id}: { id: string }) {
     const [details, setDetails] = useState<Movie>();
     const [trailer, setTrailer] = useState<Video | undefined>();
+    const [error, setError] = useState<Error | null>(null);
     const {user} = useUser();
 
     useEffect(() => {
         fetchMovieDetails(id)
-            .then((res: Movie) => setDetails(res))
+            .then((res: Movie) => {
+                setDetails(res);
+                if (error) setError(null);
+            })
             .catch(e => {
-                throw e
+                setError(e);
             });
         fetchMovieTrailer(id)
-            .then((res: Video | undefined) => setTrailer(res))
+            .then((res: Video | undefined) => {
+                setTrailer(res);
+                if (error) setError(null);
+            })
             .catch(e => {
-                throw e
+                console.error(e);
+                setError(e);
             });
     }, [id]);
 
     async function handleAddToBookmarks() {
-        if(details?.id && user?.email) {
+        if (details?.id && user?.email) {
             try {
                 await addMovieBookmark(details.id, user.email);
             } catch (error) {
-                throw error;
+                if (error instanceof Error) {
+                    setError(error);
+                }
             }
         }
     }
+
+    if (error) throw new Error('Failed to fetch movie details');
 
     if (details) return (
         <div className={styles.container}>

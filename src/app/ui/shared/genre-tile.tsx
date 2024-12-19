@@ -1,5 +1,3 @@
-'use client';
-
 import styles from '@/styles/ui/shared/genre-tile.module.scss';
 import {Genre} from '@/app/lib/genre.model';
 

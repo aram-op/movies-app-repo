@@ -11,30 +11,33 @@ function SeriesByGenre({genreId}: { genreId: string }) {
     const [series, setSeries] = useState<Series[]>([]);
     const [totalPages, setTotalPages] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetchSeriesByGenre(genreId, 1)
+        getResults(1);
+    }, [genreId]);
+
+    function getResults(pageNumber: number) {
+        fetchSeriesByGenre(genreId, pageNumber)
             .then((res) => {
                 setSeries(res.results);
                 setIsLoading(false);
                 //TMDB API limits the available page count to 500, even if in the results there are more
                 setTotalPages(res.total_pages < 500 ? res.total_pages : 500);
+                if (error) setError(null);
             })
             .catch(e => {
-                throw e;
-            });
-    }, [genreId]);
-
-    function handlePageChange(pageNumber: number) {
-        fetchSeriesByGenre(genreId, pageNumber)
-            .then((res) => {
-                setSeries(res.results);
-                setTotalPages(res.total_pages < 500 ? res.total_pages : 500);
-            })
-            .catch(e => {
-                throw e;
+                console.error(e);
+                setError(e);
+                setIsLoading(false);
             });
     }
+
+    function handlePageChange(pageNumber: number) {
+        getResults(pageNumber);
+    }
+
+    if (error) throw new Error('Failed to fetch series');
 
     if (isLoading) return <MovieGridWireframe/>;
 

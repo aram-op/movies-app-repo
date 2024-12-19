@@ -1,5 +1,3 @@
-'use client';
-
 import styles from '@/styles/ui/shared/section-heading.module.scss';
 import Chip from '@/app/ui/shared/chip';
 

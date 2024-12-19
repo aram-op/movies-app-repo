@@ -20,18 +20,27 @@ import {outfit} from '@/app/fonts';
 function SeriesDetails({id}: { id: string }) {
     const [details, setDetails] = useState<Series>();
     const [trailer, setTrailer] = useState<Video | undefined>();
+    const [error, setError] = useState<Error | null>(null);
     const {user} = useUser();
 
     useEffect(() => {
         fetchSeriesDetails(id)
-            .then((res: Series) => setDetails(res))
+            .then((res: Series) => {
+                setDetails(res);
+                if(error) setError(null);
+            })
             .catch(e => {
-                throw e
+                console.error(e);
+                setError(e);
             });
         fetchSeriesTrailer(id)
-            .then((res: Video | undefined) => setTrailer(res))
+            .then((res: Video | undefined) => {
+                setTrailer(res);
+                if(error) setError(null);
+            })
             .catch(e => {
-                throw e
+                console.error(e);
+                setError(e);
             });
     }, [id]);
 
@@ -39,11 +48,16 @@ function SeriesDetails({id}: { id: string }) {
         if (details?.id && user?.email) {
             try {
                 await addSeriesBookmark(details.id, user.email);
-            } catch (error) {
-                throw error;
+            } catch (e) {
+                if(e instanceof Error) {
+                    console.error(e);
+                    setError(e);
+                }
             }
         }
     }
+
+    if(error) throw new Error('Failed to fetch series details');
 
     if (details) return (
         <div className={styles.container}>

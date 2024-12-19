@@ -33,7 +33,7 @@ function MovieDetails({id}: { id: string }) {
             .catch(e => {
                 throw e
             });
-    }, []);
+    }, [id]);
 
     async function handleAddToBookmarks() {
         if(details?.id && user?.email) {

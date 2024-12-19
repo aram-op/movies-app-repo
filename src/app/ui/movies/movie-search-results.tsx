@@ -23,7 +23,7 @@ function MovieSearchResults({query}: { query: string }) {
             .catch(e => {
                 throw e
             });
-    }, []);
+    }, [query]);
 
     function handlePageChange(pageNumber: number) {
         fetchMoviesBySearch(query, pageNumber)

@@ -23,7 +23,7 @@ function MoviesByGenre({genreId}: { genreId: string }) {
             .catch(e => {
                 throw e;
             });
-    }, []);
+    }, [genreId]);
 
     function handlePageChange(pageNumber: number) {
         fetchMoviesByGenre(genreId, pageNumber)

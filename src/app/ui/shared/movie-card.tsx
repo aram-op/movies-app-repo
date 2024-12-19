@@ -1,5 +1,5 @@
 import {Movie} from '@/app/lib/movie.model';
-import styles from '@/styles/ui/shared/movie-card.module.scss';
+import styles from '@/styles/ui/shared/card.module.scss';
 import classNames from 'classnames';
 import {outfit} from '@/app/fonts';
 import {useRouter} from 'next/navigation';

@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/ui/movies/movie-genre-list.module.scss';
+import styles from '@/styles/ui/shared/genre-list.module.scss';
 import {useEffect, useState} from 'react';
 import {Genre} from '@/app/lib/genre.model';
 import {fetchMovieGenres} from '@/app/lib/data';

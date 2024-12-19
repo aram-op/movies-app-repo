@@ -1,13 +1,12 @@
 'use client';
 
-import styles from '@/styles/ui/movies/movies-by-genre.module.scss';
 import {useEffect, useState} from 'react';
 import {Movie} from '@/app/lib/movie.model';
 import {fetchMoviesBySearch} from '@/app/lib/data';
-import MovieCard from '@/app/ui/shared/movie-card';
-import ReactPaginate from 'react-paginate';
 import PageHeading from '@/app/ui/shared/page-heading';
 import MovieGridWireframe from '@/app/wireframes/movie-grid.wireframe';
+import MoviesGrid from '@/app/ui/shared/movies-grid';
+import Paginator from '@/app/ui/shared/paginator';
 
 function MovieSearchResults({query}: { query: string }) {
     const [results, setResults] = useState<Movie[]>([]);
@@ -37,36 +36,18 @@ function MovieSearchResults({query}: { query: string }) {
             });
     }
 
-    if(isLoading) return <MovieGridWireframe/>;
+    if (isLoading) return <MovieGridWireframe/>;
 
-    if(results.length === 0) return (
+    if (results.length === 0) return (
         <PageHeading heading={`No movies by query: "${query}" found.`}/>
     );
 
     return (
         <>
             <PageHeading heading={`Movie search results for: "${query}"`}/>
-            <div className={styles.container}>
-                {results.map(movie => <MovieCard size={'m'} key={movie.id} movie={movie}/>)}
-            </div>
-            <ReactPaginate
-                className={styles.paginator}
-                pageClassName={styles.page}
-                breakLinkClassName={styles.page}
-                nextClassName={styles.page}
-                previousClassName={styles.page}
-                activeClassName={styles.active}
-                pageCount={totalPages}
-                breakLabel="..."
-                nextLabel=">"
-                previousLabel="<"
-                onPageChange={(s) => handlePageChange(s.selected + 1)}
-                pageRangeDisplayed={3}
-                renderOnZeroPageCount={null}
-                initialPage={0}
-            />
+            <MoviesGrid movies={results}/>
+            <Paginator totalPages={totalPages} onPageChange={handlePageChange}/>
         </>
-
     );
 }
 

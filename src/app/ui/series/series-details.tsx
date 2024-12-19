@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from 'react';
 import {addSeriesBookmark, fetchSeriesDetails, fetchSeriesTrailer} from '@/app/lib/data';
-import styles from '@/styles/ui/movies/movie-details.module.scss';
+import styles from '@/styles/ui/shared/details.module.scss';
 import StarRating from '@/app/ui/shared/star-rating';
 import {Video} from '@/app/lib/video-response.model';
 import Trailer from '@/app/ui/shared/trailer';

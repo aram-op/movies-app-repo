@@ -1,12 +1,11 @@
 'use client';
 
-import styles from '@/styles/ui/movies/movies-by-genre.module.scss';
 import {useEffect, useState} from 'react';
 import {fetchMoviesByGenre} from '@/app/lib/data';
 import {Movie} from '@/app/lib/movie.model';
-import MovieCard from '@/app/ui/shared/movie-card';
-import ReactPaginate from 'react-paginate';
 import MovieGridWireframe from '@/app/wireframes/movie-grid.wireframe';
+import MoviesGrid from '@/app/ui/shared/movies-grid';
+import Paginator from '@/app/ui/shared/paginator';
 
 function MoviesByGenre({genreId}: { genreId: string }) {
     const [movies, setMovies] = useState<Movie[]>([]);
@@ -19,7 +18,7 @@ function MoviesByGenre({genreId}: { genreId: string }) {
                 setMovies(res.results);
                 setIsLoading(false);
                 //TMDB API limits the available page count to 500, even if in the results there are more
-                setTotalPages(res.total_pages < 500?  res.total_pages : 500);
+                setTotalPages(res.total_pages < 500 ? res.total_pages : 500);
             })
             .catch(e => {
                 throw e;
@@ -30,7 +29,7 @@ function MoviesByGenre({genreId}: { genreId: string }) {
         fetchMoviesByGenre(genreId, pageNumber)
             .then((res) => {
                 setMovies(res.results);
-                setTotalPages(res.total_pages < 500?  res.total_pages : 500);
+                setTotalPages(res.total_pages < 500 ? res.total_pages : 500);
             })
             .catch(e => {
                 throw e;
@@ -41,25 +40,8 @@ function MoviesByGenre({genreId}: { genreId: string }) {
 
     return (
         <>
-            <div className={styles.container}>
-                {movies.map(movie => <MovieCard size={'m'} key={movie.id} movie={movie}/>)}
-            </div>
-            <ReactPaginate
-                className={styles.paginator}
-                pageClassName={styles.page}
-                breakLinkClassName={styles.page}
-                nextClassName={styles.page}
-                previousClassName={styles.page}
-                activeClassName={styles.active}
-                pageCount={totalPages}
-                breakLabel="..."
-                nextLabel=">"
-                previousLabel="<"
-                onPageChange={(s) => handlePageChange(s.selected+1)}
-                pageRangeDisplayed={3}
-                renderOnZeroPageCount={null}
-                initialPage={0}
-            />
+            <MoviesGrid movies={movies}/>
+            <Paginator totalPages={totalPages} onPageChange={handlePageChange}/>
         </>
     );
 }

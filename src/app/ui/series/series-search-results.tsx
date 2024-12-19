@@ -1,13 +1,12 @@
 'use client';
 
-import styles from '@/styles/ui/movies/movies-by-genre.module.scss';
 import {useEffect, useState} from 'react';
 import {fetchSeriesBySearch} from '@/app/lib/data';
-import ReactPaginate from 'react-paginate';
 import {Series} from '@/app/lib/series.model';
-import SeriesCard from '@/app/ui/series/series-card';
 import PageHeading from '@/app/ui/shared/page-heading';
 import MovieGridWireframe from '@/app/wireframes/movie-grid.wireframe';
+import SeriesGrid from '@/app/ui/shared/series-grid';
+import Paginator from '@/app/ui/shared/paginator';
 
 function SeriesSearchResults({query}: { query: string }) {
     const [results, setResults] = useState<Series[]>([]);
@@ -37,9 +36,9 @@ function SeriesSearchResults({query}: { query: string }) {
             });
     }
 
-    if(isLoading) return <MovieGridWireframe/>;
+    if (isLoading) return <MovieGridWireframe/>;
 
-    if(results.length === 0) return (
+    if (results.length === 0) return (
         <PageHeading heading={`No TV Series by query: "${query}" found.`}/>
     );
 
@@ -47,25 +46,8 @@ function SeriesSearchResults({query}: { query: string }) {
     return (
         <>
             <PageHeading heading={`TV Series search results for: "${query}"`}/>
-            <div className={styles.container}>
-                {results.map(item => <SeriesCard size={'m'} key={item.id} item={item}/>)}
-            </div>
-            <ReactPaginate
-                className={styles.paginator}
-                pageClassName={styles.page}
-                breakLinkClassName={styles.page}
-                nextClassName={styles.page}
-                previousClassName={styles.page}
-                activeClassName={styles.active}
-                pageCount={totalPages}
-                breakLabel="..."
-                nextLabel=">"
-                previousLabel="<"
-                onPageChange={(s) => handlePageChange(s.selected + 1)}
-                pageRangeDisplayed={3}
-                renderOnZeroPageCount={null}
-                initialPage={0}
-            />
+            <SeriesGrid series={results}/>
+            <Paginator totalPages={totalPages} onPageChange={handlePageChange}/>
         </>
     );
 }

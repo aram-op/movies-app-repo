@@ -4,9 +4,8 @@ import {useEffect, useState} from 'react';
 import {Movie} from '@/app/lib/movie.model';
 import {fetchBookmarkedMovies} from '@/app/lib/data';
 import {useUser} from '@auth0/nextjs-auth0/client';
-import styles from '@/styles/ui/movies/movies-by-genre.module.scss';
-import MovieCard from '@/app/ui/shared/movie-card';
 import MovieGridWireframe from '@/app/wireframes/movie-grid.wireframe';
+import MoviesGrid from '@/app/ui/shared/movies-grid';
 
 function BookmarkedMovies() {
     const [movies, setMovies] = useState<Movie[]>([]);
@@ -31,9 +30,7 @@ function BookmarkedMovies() {
     if (isFetching) return <MovieGridWireframe/>
 
     return (
-        <div className={styles.container}>
-            {movies.map(movie => <MovieCard size={'m'} key={movie.id} movie={movie}/>)}
-        </div>
+        <MoviesGrid movies={movies}/>
     );
 }
 

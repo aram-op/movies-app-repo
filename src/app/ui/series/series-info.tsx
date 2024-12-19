@@ -1,4 +1,4 @@
-import styles from '@/styles/ui/series/series-info.module.scss';
+import styles from '@/styles/ui/shared/info.module.scss';
 import {Series} from '@/app/lib/series.model';
 
 function SeriesInfo({details} : {details: Series}) {

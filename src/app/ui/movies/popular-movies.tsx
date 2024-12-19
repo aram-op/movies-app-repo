@@ -3,7 +3,7 @@
 import {useEffect, useState} from 'react';
 import {Movie} from '@/app/lib/movie.model';
 import {fetchPopularMovies} from '@/app/lib/data';
-import styles from '@/styles/ui/movies/top-rated-movies.module.scss';
+import styles from '@/styles/ui/shared/movies-flex.module.scss';
 import SectionHeading from '@/app/ui/shared/section-heading';
 import MovieCard from '@/app/ui/shared/movie-card';
 import PopularMoviesWireframe from '@/app/wireframes/popular-movies.wireframe';

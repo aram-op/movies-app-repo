@@ -1,5 +1,5 @@
 import {Movie} from '@/app/lib/movie.model';
-import styles from '@/styles/ui/movies/movie-info.module.scss';
+import styles from '@/styles/ui/shared/info.module.scss';
 
 function MovieInfo({details} : {details: Movie}) {
     return (

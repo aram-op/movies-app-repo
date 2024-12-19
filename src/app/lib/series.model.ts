@@ -1,5 +1,5 @@
 import {Genre} from '@/app/lib/genre.model';
-import {Cast} from '@/app/lib/movie.model';
+import {Cast, Movie} from '@/app/lib/movie.model';
 
 export interface Series {
     backdrop_path: string;
